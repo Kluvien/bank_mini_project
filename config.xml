@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.corbabank" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>CORBA Bank</name>
+    <description>A mobile and web application for banking services using CORBA.</description>
+    <author email="support@example.com" href="http://example.com">Example Inc.</author>
+    <content src="www/index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <preference name="Orientation" value="default" />
+    <preference name="TargetDeviceFamily" value="universal" />
+    <preference name="Fullscreen" value="true" />
+    <preference name="WebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <platform name="android">
+        <preference name="android-minSdkVersion" value="21" />
+        <preference name="android-targetSdkVersion" value="30" />
+    </platform>
+    <platform name="ios">
+        <preference name="deployment-target" value="10.0" />
+    </platform>
+</widget>

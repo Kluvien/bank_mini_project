@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Page</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction History</h1>
+        <div id="transaction-list">
+            <!-- Transaction history will be dynamically populated here -->
+        </div>
+        <h2>Initiate a New Transaction</h2>
+        <form id="transaction-form">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" required>
+            <label for="recipient">Recipient:</label>
+            <input type="text" id="recipient" required>
+            <button type="submit">Submit Transaction</button>
+        </form>
+    </div>
+    <script src="../js/app.js"></script>
+    <script src="../js/controllers/transactionController.js"></script>
+</body>
+</html>
