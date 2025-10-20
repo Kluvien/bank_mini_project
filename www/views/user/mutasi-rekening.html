@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutasi Rekening - PayPak</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="bi bi-journal-text me-2"></i>Mutasi Rekening</h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Info Rekening -->
+                        <div class="alert alert-info">
+                            <strong>Nomor Rekening:</strong> 1234567890 | 
+                            <strong>Nama:</strong> User PayPak | 
+                            <strong>Periode:</strong> <span id="periodInfo">Januari 2025</span>
+                        </div>
+
+                        <!-- Filter Periode -->
+                        <div class="row mb-4">
+                            <div class="col-md-3">
+                                <label class="form-label">Dari Tanggal</label>
+                                <input type="date" class="form-control" id="mutasiStartDate">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Sampai Tanggal</label>
+                                <input type="date" class="form-control" id="mutasiEndDate">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">&nbsp;</label>
+                                <button class="btn btn-primary w-100" onclick="filterMutasi()">
+                                    <i class="bi bi-search me-2"></i>Cari
+                                </button>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">&nbsp;</label>
+                                <button class="btn btn-success w-100" onclick="printMutasi()">
+                                    <i class="bi bi-printer me-2"></i>Cetak
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Ringkasan -->
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <div class="card border-primary">
+                                    <div class="card-body text-center">
+                                        <small class="text-muted">Saldo Awal</small>
+                                        <h5 class="text-primary">Rp 3.000.000</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-success">
+                                    <div class="card-body text-center">
+                                        <small class="text-muted">Total Kredit</small>
+                                        <h5 class="text-success">Rp 2.500.000</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-danger">
+                                    <div class="card-body text-center">
+                                        <small class="text-muted">Total Debit</small>
+                                        <h5 class="text-danger">Rp 250.000</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabel Mutasi -->
+                        <div class="table-responsive">
+                            <table class="table table-sm table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Keterangan</th>
+                                        <th>Cabang</th>
+                                        <th>Debit</th>
+                                        <th>Kredit</th>
+                                        <th>Saldo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-active">
+                                        <td colspan="5" class="text-end"><strong>Saldo Awal</strong></td>
+                                        <td><strong>Rp 3.000.000</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>01/01/2025</td>
+                                        <td>Setoran Tunai</td>
+                                        <td>Jakarta Pusat</td>
+                                        <td>-</td>
+                                        <td class="text-success">Rp 1.000.000</td>
+                                        <td>Rp 4.000.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/01/2025</td>
+                                        <td>Transfer dari 9876543210</td>
+                                        <td>Online</td>
+                                        <td>-</td>
+                                        <td class="text-success">Rp 500.000</td>
+                                        <td>Rp 4.500.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>08/01/2025</td>
+                                        <td>Transfer ke 1112223334</td>
+                                        <td>Online</td>
+                                        <td class="text-danger">Rp 250.000</td>
+                                        <td>-</td>
+                                        <td>Rp 4.250.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/01/2025</td>
+                                        <td>Gaji Bulanan</td>
+                                        <td>Online</td>
+                                        <td>-</td>
+                                        <td class="text-success">Rp 1.000.000</td>
+                                        <td>Rp 5.250.000</td>
+                                    </tr>
+                                    <tr class="table-active">
+                                        <td colspan="3" class="text-end"><strong>Total</strong></td>
+                                        <td><strong class="text-danger">Rp 250.000</strong></td>
+                                        <td><strong class="text-success">Rp 2.500.000</strong></td>
+                                        <td><strong>Rp 5.250.000</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert alert-warning mt-3">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Catatan:</strong> Mutasi rekening menampilkan seluruh transaksi yang terjadi pada periode yang dipilih.
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="../../index.html" class="btn btn-secondary">
+                            <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
+                        </a>
+                        <button class="btn btn-info float-end" onclick="downloadCSV()">
+                            <i class="bi bi-file-earmark-excel me-2"></i>Download CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filterMutasi() {
+            alert('Filter mutasi akan diimplementasikan');
+        }
+
+        function printMutasi() {
+            window.print();
+        }
+
+        function downloadCSV() {
+            alert('Download CSV dalam pengembangan');
+        }
+    </script>
+</body>
+</html>

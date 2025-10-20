@@ -1,52 +1,90 @@
-// This file initializes the application and sets up the main application logic.
+// PayPak Application
 
-document.addEventListener('deviceready', function() {
-    // Initialize the application
-    console.log('Cordova is ready!');
-
-    // Set up routing or any other initialization logic here
-    initializeApp();
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('PayPak App Loaded');
+    initializeSidebar();
+    initializeCharts();
 });
 
-function initializeApp() {
-    // Example of setting up a simple routing mechanism
-    const routes = {
-        '/login': loadLoginPage,
-        '/account': loadAccountPage,
-        '/transaction': loadTransactionPage
-    };
-
-    window.onhashchange = function() {
-        const hash = window.location.hash.substring(1);
-        if (routes[hash]) {
-            routes[hash]();
-        } else {
-            loadLoginPage(); // Default to login page
-        }
-    };
-
-    // Load the initial page
-    if (!window.location.hash) {
-        window.location.hash = '/login';
-    } else {
-        window.onhashchange();
+function initializeSidebar() {
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('accordionSidebar');
+    
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('toggled');
+        });
     }
 }
 
-function loadLoginPage() {
-    // Logic to load the login page
-    console.log('Loading login page...');
-    // You can use AJAX or other methods to fetch and display the login view
+function initializeCharts() {
+    const transactionCtx = document.getElementById('transactionChart');
+    if (transactionCtx && typeof Chart !== 'undefined') {
+        new Chart(transactionCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agt', 'Sep', 'Okt'],
+                datasets: [{
+                    label: 'Pemasukan',
+                    data: [4200, 5100, 6000, 5800, 6200, 5900, 6500, 5400, 6000, 5400],
+                    borderColor: '#1cc88a',
+                    tension: 0.3
+                }, {
+                    label: 'Pengeluaran',
+                    data: [3000, 2900, 3500, 3200, 2800, 3100, 3400, 2900, 3300, 3200],
+                    borderColor: '#e74a3b',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true
+            }
+        });
+    }
+
+    const categoryCtx = document.getElementById('categoryChart');
+    if (categoryCtx && typeof Chart !== 'undefined') {
+        new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Makanan', 'Transport', 'Belanja', 'Lainnya'],
+                datasets: [{
+                    data: [35, 25, 30, 10],
+                    backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e']
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true
+            }
+        });
+    }
 }
 
-function loadAccountPage() {
-    // Logic to load the account page
-    console.log('Loading account page...');
-    // You can use AJAX or other methods to fetch and display the account view
+function showTransfer() {
+    alert('Fitur Transfer akan segera hadir!');
 }
 
-function loadTransactionPage() {
-    // Logic to load the transaction page
-    console.log('Loading transaction page...');
-    // You can use AJAX or other methods to fetch and display the transaction view
+function showDeposit() {
+    alert('Fitur Setor Tunai akan segera hadir!');
+}
+
+function showWithdraw() {
+    alert('Fitur Tarik Tunai akan segera hadir!');
+}
+
+function showHistory() {
+    alert('Fitur Riwayat Transaksi akan segera hadir!');
+}
+
+function showSettings() {
+    alert('Fitur Pengaturan akan segera hadir!');
+}
+
+function logout() {
+    if(confirm('Apakah Anda yakin ingin keluar?')) {
+        alert('Logout berhasil!');
+        window.location.href = 'views/login.html';
+    }
 }
