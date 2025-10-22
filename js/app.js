@@ -8,13 +8,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeSidebar() {
     const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarToggleTop = document.getElementById('sidebarToggleTop');
     const sidebar = document.getElementById('accordionSidebar');
     
+    // Desktop sidebar toggle
     if (sidebarToggle) {
         sidebarToggle.addEventListener('click', function() {
             sidebar.classList.toggle('toggled');
         });
     }
+    
+    // Mobile sidebar toggle
+    if (sidebarToggleTop) {
+        sidebarToggleTop.addEventListener('click', function(e) {
+            e.preventDefault();
+            sidebar.classList.toggle('active');
+            document.body.classList.toggle('sidebar-open');
+        });
+    }
+    
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            if (!sidebar.contains(e.target) && !sidebarToggleTop.contains(e.target)) {
+                sidebar.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+            }
+        }
+    });
+    
+    // Close sidebar when clicking on a menu item (mobile)
+    const sidebarLinks = sidebar.querySelectorAll('.nav-link');
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
+                document.body.classList.remove('sidebar-open');
+            }
+        });
+    });
 }
 
 function initializeCharts() {

@@ -165,3 +165,134 @@ body {
 .chart-pie {
     height: 15rem;
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* Hide sidebar by default on mobile */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -14rem;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease-in-out;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    /* Add overlay when sidebar is open */
+    body.sidebar-open::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+    
+    /* Adjust content wrapper for mobile */
+    #content-wrapper {
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+    
+    /* Mobile topbar adjustments */
+    .topbar {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        height: auto;
+        min-height: 4.375rem;
+    }
+    
+    #sidebarToggleTop {
+        display: inline-block !important;
+    }
+    
+    /* Stack cards on mobile */
+    .col-xl-3, .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    /* Adjust card spacing */
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    /* Make table scrollable on mobile */
+    .table-responsive {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Reduce font size on mobile */
+    h1, .h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Hide search form on small screens */
+    .navbar-search {
+        display: none !important;
+    }
+    
+    /* Adjust container padding */
+    .container-fluid {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    /* Make dropdown menu full width on mobile */
+    .dropdown-menu {
+        min-width: 100%;
+    }
+    
+    /* Adjust footer */
+    .sticky-footer {
+        position: relative;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 576px) {
+    /* Further reduce sizes */
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .text-xs {
+        font-size: 0.65rem;
+    }
+    
+    .h5 {
+        font-size: 1rem !important;
+    }
+    
+    /* Make icons smaller */
+    .fs-2 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Hide some table columns on very small screens */
+    .table td:nth-child(3),
+    .table th:nth-child(3) {
+        display: none;
+    }
+}
+
+/* Landscape mode adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .sidebar {
+        width: 12rem;
+        left: -12rem;
+    }
+    
+    .topbar {
+        height: 3rem;
+        min-height: 3rem;
+    }
+}
+
